@@ -23,6 +23,7 @@ public class ShoppingCartServlet extends HttpServlet {
 		addToCart(req, resp);
 		break;
 	case "/cart-show":
+		getServletContext().getRequestDispatcher("/my_cart.jsp").forward(req, resp);
 		break;
 	case "/cart-clear":
 		clear(req,resp);

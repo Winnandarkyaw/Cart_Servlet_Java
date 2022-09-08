@@ -70,4 +70,10 @@ class ShoppingCartImpl implements ShoppingCart {
 		}
 		return null;
 	}
+
+	@Override
+	public List<SaleItem> items() {
+		// TODO Auto-generated method stub
+		return new ArrayList<SaleItem>(items);
+	}
 }
