@@ -38,4 +38,14 @@ public class SaleItem implements Serializable {
 	public void addOne() {
        count++;
 	}
+
+	public void changeCount(boolean plus) {
+		if(plus)
+		{
+			count++;
+		}
+		else {
+			count--;
+		}
+	}
 }

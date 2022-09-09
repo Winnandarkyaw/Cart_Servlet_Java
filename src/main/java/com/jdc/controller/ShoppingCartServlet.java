@@ -1,6 +1,9 @@
 package com.jdc.controller;
 
 import java.io.IOException;
+
+import javax.sql.rowset.CachedRowSet;
+
 import com.jdc.shop.model.ProductModel;
 import com.jdc.shop.model.ShoppingCart;
 import com.jdc.shop.model.entity.Product;
@@ -11,7 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet({ "/cart-add", "/cart-show", "/cart-clear" })
+@WebServlet({ "/cart-add", "/cart-show", "/cart-clear" ,"/cart-plus","/cart-minus"})
 public class ShoppingCartServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -28,8 +31,24 @@ public class ShoppingCartServlet extends HttpServlet {
 	case "/cart-clear":
 		clear(req,resp);
 		break;
+	case "/cart-plus":
+	case "/cart-minus":
+		changeCartItemCount(req,resp);
+		break;
     }
 }
+	private void changeCartItemCount(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		var cart=(ShoppingCart)req.getSession().getAttribute("cart");
+		//Get product id from request scope
+		var product=req.getParameter("product");
+		//Get action from req 
+		var plus="/cart-plus".equals(req.getServletPath());
+		//update model
+		cart.changeItemCount(plus, Integer.parseInt(product));
+		//Navigate 
+		var link=req.getContextPath().concat("/my_cart.jsp");
+		resp.sendRedirect(link);
+	}
 	private void clear(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		//get session

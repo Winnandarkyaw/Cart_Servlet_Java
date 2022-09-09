@@ -16,14 +16,12 @@
 	<%
 	ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 	%>
-	<table style="width:70%">
+	<table style="width: 70%">
 		<tr>
 			<td>Product</td>
 			<td>Category</td>
 			<td>Unit Price</td>
-			<td></td>
-			<td>Count</td>
-			<td></td>
+			<td style="text-align: center;">Count</td>
 			<td>Total</td>
 		</tr>
 		<%
@@ -33,21 +31,27 @@
 			<td><%=item.getProduct().getName()%></td>
 			<td><%=item.getProduct().getCategory()%></td>
 			<td><%=item.getProduct().getPrice()%></td>
-			<td></td>
-			<td><%=item.getCount()%></td>
-			<td></td>
+			<td style="text-align: center">
+				<!-- Minus Count --> <a
+				href="cart-minus?product=<%=item.getProduct().getId()%>">-</a> <%=item.getCount()%>
+				<!-- Plus Count --> <a
+				href="cart-plus?product=<%=item.getProduct().getId()%>">+</a>
+			</td>
+			
 			<td><%=item.getTotal()%></td>
 		</tr>
 		<%
 		}
 		%>
 		<tr>
-			<td colspan="6">Total</td>
+			<td colspan="3">Total</td>
+			<td style="text-align: center;"><%=cart.itemCount()%></td>
 			<td><%=cart.total()%></td>
 		</tr>
 	</table>
+	<hr/>
 	<p>
-	  <a href="index.jsp">Back</a>
+		<a href="index.jsp">Back</a>
 	</p>
 </body>
 </html>

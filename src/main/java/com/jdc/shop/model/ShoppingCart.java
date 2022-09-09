@@ -8,7 +8,7 @@ import com.jdc.shop.model.entity.SaleItem;
 
 public interface ShoppingCart extends Serializable {
 	void add(Product product);
-
+    void changeItemCount(boolean plus,int productId);
 	int size();
 
 	void clear();
@@ -17,7 +17,7 @@ public interface ShoppingCart extends Serializable {
 
 	int total();
 
-	int subTotal();
+    
     List<SaleItem>items();
 	public static ShoppingCart generate() {
 		return new ShoppingCartImpl();

@@ -17,7 +17,7 @@ class ShoppingCartImpl implements ShoppingCart {
 
 	@Override
 	public void add(Product product) {
-		var item = findItemByProduct(product);
+		var item = findItemByProduct(product.getId());
 		if (null == item) {
 			item = new SaleItem();
 			item.setProduct(product);
@@ -38,12 +38,7 @@ class ShoppingCartImpl implements ShoppingCart {
 		items.clear();
 	}
 
-	@Override
-	public int subTotal() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	@Override
 	public int itemCount() {
 		int count = 0;
@@ -62,9 +57,9 @@ class ShoppingCartImpl implements ShoppingCart {
 		return total;
 	}
 
-	private SaleItem findItemByProduct(Product product) {
+	private SaleItem findItemByProduct(int product) {
 		for (SaleItem item : items) {
-			if (item.getProduct().getId() == product.getId()) {
+			if (item.getProduct().getId() == product) {
 				return item;
 			}
 		}
@@ -75,5 +70,18 @@ class ShoppingCartImpl implements ShoppingCart {
 	public List<SaleItem> items() {
 		// TODO Auto-generated method stub
 		return new ArrayList<SaleItem>(items);
+	}
+
+	@Override
+	public void changeItemCount(boolean plus, int productId) {
+		
+		var item=findItemByProduct(productId);
+		if(null != item) {
+			item.changeCount(plus);
+			if(item.getCount()==0 )
+			{
+				items.remove(item);
+			}
+		}
 	}
 }
