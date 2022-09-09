@@ -52,6 +52,7 @@
 		}
 		%>
 	</table>
+	<a href="sale-history">Sale History</a>
 
 </body>
 </html>

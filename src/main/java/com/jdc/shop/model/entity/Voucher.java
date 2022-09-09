@@ -11,9 +11,26 @@ public class Voucher implements Serializable {
 	private String customer;
 	private LocalDateTime saleTime;
 	private List<SaleItem> sales;
-
+    public int itemCount()
+    {
+    	int count=0;
+    	for(var s:sales)
+    	{
+    		count+=s.getCount();
+    	}
+    	return count;
+    }
+    public int total()
+    {
+    	int total=0;
+    	for(var s:sales)
+    	{
+    		total+=s.getTotal();
+    	}
+    	return total;
+    }
 	public Voucher() {
-		sales = new ArrayList<>();
+		sales=new ArrayList<>();
 	}
 
 	public int getId() {
@@ -47,4 +64,5 @@ public class Voucher implements Serializable {
 	public void setSales(List<SaleItem> sales) {
 		this.sales = sales;
 	}
+
 }

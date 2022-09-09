@@ -13,6 +13,11 @@
 <body>
 	<h1>My Cart</h1>
 	<p>Item Details in shopping Cart</p>
+	<hr/>
+	<p>
+		<a href="index.jsp">Back</a>
+	</p>
+	<hr />
 	<%
 	ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 	%>
@@ -49,9 +54,13 @@
 			<td><%=cart.total()%></td>
 		</tr>
 	</table>
-	<hr/>
-	<p>
-		<a href="index.jsp">Back</a>
-	</p>
+
+		<hr />
+	<h3>Check Out</h3>
+	<form action="checkout" method="post">
+	 <label for="">Customer Name</label>
+	 <input type="text"  placeholder="Enter Customer Name"  name="customer"/>
+	 <button type="submit">Check Out</button>
+	</form>
 </body>
 </html>

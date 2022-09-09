@@ -2,8 +2,6 @@ package com.jdc.controller;
 
 import java.io.IOException;
 
-import javax.sql.rowset.CachedRowSet;
-
 import com.jdc.shop.model.ProductModel;
 import com.jdc.shop.model.ShoppingCart;
 import com.jdc.shop.model.entity.Product;
